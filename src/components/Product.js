@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
-import  Card  from "react-bootstrap/Card"
-
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
  export default class Product extends Component {
 
     constructor(props){
         super(props)
-        this.state=props
+        this.state=props || {}
     }
     render(){
         return (
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={require(`../assets/images/${this.state.img}`)}/>
-            <Card.Body>
+          <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={require("../assets/images/"+this.state.img) } />
+          <Card.Body>
               <Card.Title>{this.state.name}</Card.Title>
               <Card.Text>
-                {this.state.description}
+                  {this.state.description}
               </Card.Text>
-            </Card.Body>
-            <Card.Footer className="text-muted">{this.state.price}</Card.Footer>
+              <Card.Text>
+                  {this.state.price} DT
+              </Card.Text>
+              <Card.Text>
+                  {this.state.like}
+              </Card.Text>
+              <Button variant="primary">Like</Button>{' '}
+          </Card.Body>
           </Card>
         );
     }

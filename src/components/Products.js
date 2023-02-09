@@ -1,11 +1,12 @@
 import Product from "./Product";
 import listproducts from "../products.json"
 import React, {Component} from 'react';
+import { Row } from "react-bootstrap";
 
 export default class Products extends Component{
     render() {
 return (
-    <>
+    <Row>
       {
         listproducts.map((product,index)=>(
         <Product 
@@ -15,9 +16,10 @@ return (
         price = {product.price}
         img= {product.img}
         description= {product.description}
+        like={product.like}
         />
     ))}
-    </>
+    </Row>
   
    
 )
