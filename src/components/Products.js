@@ -6,6 +6,7 @@ import { Row } from "react-bootstrap";
 export default class Products extends Component{
     render() {
 return (
+    <div>
     <Row className="d-flex justify-content-center p-4">
       {
         listproducts.map((product,index)=>(
@@ -22,6 +23,8 @@ return (
     ))}
     </Row>
   
+    </div>
+
    
 )
     }
