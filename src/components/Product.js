@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import "./product.css";
+import { Link } from "react-router-dom";
 
 export function Product(props) {
   const [like, setLike] = useState(props.like);
@@ -53,7 +54,7 @@ export function Product(props) {
         height="200px"
       />
       <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
+        <Card.Title><Link to={`/detailproduit/${props.name}`}>{props.name}</Link></Card.Title>
         <Card.Text>Description : {props.description}</Card.Text>
         <Card.Text>Price : {props.price} DT</Card.Text>
         <Card.Text>Like : {like}</Card.Text>
