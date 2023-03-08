@@ -13,7 +13,12 @@ function Products () {
 
     useEffect(() => {
       getallProducts().
-      then((res) => setProducts(res.data)).
+      then(
+        (res) => {
+          setProducts(res.data)
+          console.log(res.data);
+        }
+        ).
       catch((err) => console.log(err))
     }, []);
 
