@@ -2,12 +2,20 @@ import Card from "react-bootstrap/Card";
 import { Component, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../ReduxToolkit/slices/cartSlice";
 
 function Product(props) {
   const [product, setProduct] = useState(props.product);
   const [likes, setLikes] = useState(props.product.like);
+  const dispatch = useDispatch();
 
+  const addToCart = (p) => {
+      
+    dispatch(addItemToCart(p));
+   
+    };
   const like = () => {
     setLikes(likes + 1);
   };
@@ -49,15 +57,35 @@ function Product(props) {
         </Row>
         <br></br>
         <Row>
-            <Col md={6}>
-              {" "}
-              <Button variant="success" ><Link to={`/products/update/${product.id}`} style={{textDecoration :'none' ,color: 'white'}}>Update Product </Link></Button>
-            </Col>
-            <Col md={6}>
-              <Button variant="danger" onClick={() => props.deleteProd(product.id)}>Delete Product</Button>
-            </Col>
-            
-          </Row>
+          <Col md={6}>
+            {" "}
+            <Button variant="success">
+              <Link
+                to={`/products/update/${product.id}`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Update Product{" "}
+              </Link>
+            </Button>
+          </Col>
+          <Col md={6}>
+            <Button
+              variant="danger"
+              onClick={() => props.deleteProd(product.id)}
+            >
+              Delete Product
+            </Button>
+          </Col>
+        </Row>
+        <br/>
+      <Row>
+      <Col>
+        <div className="d-grid">
+          <Button variant="success" onClick={()=>addToCart(product)}>Add to Cart</Button>
+        </div>
+      </Col>
+    </Row>
+       
       </Card.Body>
     </Card>
   );

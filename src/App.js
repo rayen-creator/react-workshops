@@ -1,47 +1,42 @@
-import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import CustomNavbar from './Components/CustomNavbar';
-import ReduxComponent from './Redux/ReduxComponent';
-import ReduxToolkitComponent from './ReduxToolkit/ReduxComponent';
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import CustomNavbar from "./Components/CustomNavbar";
+import ReduxComponent from "./Redux/ReduxComponent";
+import ReduxToolkitComponent from "./ReduxToolkit/ReduxComponent";
 
+const Home = lazy(() => import("./Components/Home"));
+const UpdateProduct = lazy(() => import("./Components/UpdateProduct"));
 
-const Home = lazy(()=>import('./Components/Home'));
-const UpdateProduct = lazy(()=>import('./Components/UpdateProduct'));
-
-const ProductDetails = lazy(()=>import('./Components/ProductDetails'));
-const AddProduct = lazy(()=>import('./Components/addProduct'));
-const Products = lazy(()=>import('./Components/Products'));
-const ProductLayout = lazy(()=>import('./Components/ProductLayout'));
-const NotFound = lazy(()=>import('./Components/NotFound'));
-
-
+const ProductDetails = lazy(() => import("./Components/ProductDetails"));
+const AddProduct = lazy(() => import("./Components/addProduct"));
+const Products = lazy(() => import("./Components/Products"));
+const ProductLayout = lazy(() => import("./Components/ProductLayout"));
+const NotFound = lazy(() => import("./Components/NotFound"));
+const Cart = lazy(() => import("./Components/cart"));
 function App() {
- 
   return (
     // <Fragement>
     <>
-  
-    {/* <Products/> */}
-    <Suspense fallback={<h1>Loaading ....</h1>}>
-    <CustomNavbar/>
-    <Routes>
-      <Route path="*" element={<NotFound/>}/>
-      <Route path="/" element={<h1>Home</h1>}/>
-      <Route path="/redux" element={<ReduxComponent/>}/>
-      <Route path="/reduxtoolkit" element={<ReduxToolkitComponent/>}/> 
+      {/* <Products/> */}
+      <Suspense fallback={<h1>Loaading ....</h1>}>
+        <CustomNavbar />
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/redux" element={<ReduxComponent />} />
+          <Route path="/reduxtoolkit" element={<ReduxToolkitComponent />} />
 
-
-      <Route path="/home/:username" element={<Home/>}/> 
-      <Route path="/products" element={<ProductLayout />}>
-          <Route path="list" element={<Products />}/>
-          <Route path="add" element={<AddProduct/>}/>
-      <Route path='update/:id' element={<UpdateProduct />}/>
-
-          <Route path=":id" element={<ProductDetails/>}/>
-      </Route>
-    </Routes>
-    </Suspense>
+          <Route path="/home/:username" element={<Home />} />
+          <Route path="/products" element={<ProductLayout />}>
+            <Route path="list" element={<Products />} />
+            <Route path="add" element={<AddProduct />} />
+            <Route path="update/:id" element={<UpdateProduct />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path=":id" element={<ProductDetails />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
     // </Fragement>
   );
